@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+let br="<br>";
+
+function Circle(x, y, r){
+	
+	this.x = x;
+	this.y = y;
+	this.r = r;
+	this.getName=function(){document.write("circle객체");}
+}
+
+Circle.prototype.area = function(){ //prototype 타입 객체-역할(모든객체 공통기능구현)
+	document.write(`원의면적(${this.x}, ${this.y}, ${this.r} = ${this.r * this.r *Math.PI} ${br}`);
+} 
+
+Circle.prototype.getName = function(){
+	document.write("circle객체-프로토타입<br>");
+}
+	
+let c1 = new Circle(10, 10, 5);
+c1.area();
+c1.getName();
+let c2 = new Circle(50, 50, 8);
+c2.area();
+c1.getName();
+let c3 = new Circle(80, 80, 4);
+c3.area();
+c1.getName();
+
+//타입확인
+//Obejct 내장생성자 메소드/프로토타입메소드 (다른 객체 사용 가능)
+document.write(Object.prototype.toString.call(c1) + "<br>")//c1의 타입은 뭐니? Array와 Object
+document.write(c1.constructor + "<br>"); //c1의 constructor 변수//Object의 constructor변수 있음/ Object상속 받음
+document.write((c1 instanceof Circle) + "<br>");
+document.write(Circle.prototype.isPrototypeOf(c1) + "<br>");
+
+
+//상속 확인
+function Oval(x, r, y, name){//상위 객체로 전달해야할 변수 먼저 (x, r, y)그리고  Oval생성자에서 사용할 변수 name 나중에
+	this.name = name;
+	//Circle.apply(호출주체, 매개변수 배열)
+	Circle.apply(this, arguments); //new Circle(this, x, y, r) 생성자 실행 
+	//내가Oval이 Cirle 객체를 만들께, 그때 매개변수로 arguments 전달할께
+}
+
+Oval.prototype = Object.create(Circle.prototype);//getName + area copy
+
+let o1 = new Oval(100, 200,50, "타원1");
+o1.getName(); //생성자내부메소드
+o1.area(); //prototype메소드
+
+
+document.write("<hr>");
+
+/*
+//프로퍼티변수 setter/getter
+//객체 프로퍼티(1.데이터 프로퍼티 2.set 3.get)
+let myperson = {
+		_name:"--",
+		//setName : function(){_name="수정";},
+		//getName : function(){return _name;}
+		set name(n){_name = n;},
+		get name(){return _name;}
+		
+}
+document.write(myperson._name + "<br>");
+//myperson.setName();
+//document.write(myperson.getName() + "<br>");
+
+myperson.name = "수정합니다."; //set name(n){_name = n;} 실행 호출
+document.write(myperson.name + "<br>"); //get name(){return _name;}
+*/
+
+//setter/getter/ 직접 변수 접근 가능
+//즉각실행함수
+let myperson = (function() {
+		let _name = "--";
+		return {
+		set name(n){_name = n;},
+		get name(){return _name;}
+		}//즉각실행 리턴값 객체(set / get)
+})();
+		
+
+//document.write(myperson._name + "<br>"); //undefined
+
+//_name프로퍼티 
+myperson.name = "수정합니다."; //set name(n){_name = n;} 실행 호출
+document.write(myperson.name + "<br>"); //get name(){return _name;}
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+let br="<br>";
+
+document.write(br);
+
+window.onload = function(){
+	let div = document.getElementById("here").innerHTML; //type string
+	let div2 = document.getElementById("result");
+	div2.innerHTML = div.indexOf("ab1개이상반복c"); //문자열 포함여부
+	
+	//문자열 형식 - regular expression = 정규표현식 = 자바스크립트
+	let reg1 = /abc/gim;//리터럴로 지정  /정규표현식/g 전체문장에서 다찾아라 i 대소문자 상관없이  m 전체줄로 확대한다 
+	let reg2 = new RegExp("[abc]", "gim"); //객체생성   abc 문자형식 맞는가 표현
+	
+	reg1 =/a[b]{0, 1}c/gim;
+	//div2.innerHTML = reg2.test(div);//t/f
+	div2.innerHTML = div.match(reg1); //매치문자열출력
+	
+
+	
+}
+
+</script>
+<div id="here">ac 여기에는 abc를 포함한 문장이 있습니다. abbc는 알파벳 소문자입니다.</div>
+<div id="result"> </div>
+</body>
+</html>

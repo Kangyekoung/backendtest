@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+/*window alert();
+window.document.write();
+window.console.log(); */
+
+//변수, 함수 상용자 정의 - window 내장객체 내부 포함
+//입력
+//let val1 = prompt("아이디입력하세요");
+//document.write(val1 + "<br>");
+
+//let val2 = confirm("입력한 내용이 맞습니까?");
+//document.write(val2 + "<br>");
+
+//let val3 = prompt("나이를 입력하세요"); //"20"
+//document.write("내년에는 " + (parseInt(val3) + 1) +" 세가 되겠군요" + "<br>");
+
+document.write((parseInt(123.456)) + "<br>");
+document.write((parseInt("123사오육")) + "<br>"); //o
+document.write((parseInt("사오육123")) + "<br>"); //x NaN 숫자로 변경하수없다.
+
+document.write(typeof(parseFloat("123.45678")) + "<br>"); //number
+
+let age = 12.456789;
+//Number생성자함수
+let age2 = new Number(age);
+//age2.toFixed(2); //소수점 2자리까지 보여달라
+document.write(age2.toFixed(2) + "<br>");
+document.write(age.toFixed(2) + "<br>");
+
+//Number생성자함수객체 = number타입숫자
+
+// string를 숫자 변환 가능
+let age3 = new Number("12삼사오"); //x Number안됨
+document.write(age3 + "<br>");
+
+if(isNaN("1245")){
+	document.write("숫자 변환 불가 <br>");
+}
+else{
+	let age4 = new Number("1245");
+	document.write( age4 + "<br>");
+}
+
+//Date 내장 생성자함수
+let now = new Date();
+document.write("<h3 style=color:green>" + now + "</h3>");
+document.write("<h3 style=color:red>" + now.toLocaleDateString() + "</h3>");
+document.write("<h3 style=color:blue>" + now.toLocaleTimeString() + "</h3>");
+document.write("<h3 style=color:purple>" + now.toLocaleString + "</h3>");
+
+//window.메소드
+//parseInt/parseFloat 숫자(0)/숫자문자열(0/문자열숫자(x)
+//new Number(숫자(0),문자열(x))메소드
+</script>
+</body>
+</html>

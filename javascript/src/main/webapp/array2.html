@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+let br="<br>";
+
+document.write(br);
+
+let ar1 = [1, 2, 3, 100, 5];//ar1.length = 5
+let ar2 = new Array();//ar2.length = 0
+
+//추가
+//ar1.push(450); //맨 끝
+//ar1.unshift(10); //맨 앞
+//ar1[7] = "값추가";
+
+//삭제
+//delete ar1[7];
+//ar1.shift(); //맨 앞
+//ar1.pop//맨 끝
+//ar1.splice(1,2); //1번 인덱스부터 2개 삭제
+//ar1.splice(1,0, "추가");//1번 인덱스 추가
+//document.write(ar1.length + br);
+//document.write(ar1 + br);
+
+//let result_ar = ar1.slice(1, 4); //1번인덱스 시작 4번 인덱스직전(3번) 추출, 새로운 배열 생성
+//document.write(result_ar + br);
+
+let ar3 = [1, 2, 3, 100, 5];
+document.write("정렬이전=" + ar3 + br);
+ar3.sort(); //직접 원본배열 정렬 상태 수정. ar 변경
+// 배열 문자열형태 강주. 오름차순정렬(사전식정렬)
+document.write("정렬이후=" + ar3 + br); //1, 100, 2, 3, 5
+// 숫자 오름차순 정렬 1 2 3 5 100
+ar3.sort(function(i,j){return i - j;}); 
+//매개변수로 함수 지정 함수 = 고차함수
+// function(){}=>sort메소드실행 자동실행 = 콜백함수
+// f(10,1) > 0 - sort는 원본 데이터 순서 변경
+// f(10,1) < 0 - sort는 원본 배열 데이터 순서 변경x
+// f(1, 10) == 0 = sort는 원본 배열 데이터 수너 변경x
+document.write("정렬이2(숫자오름)후=" + ar3 + br);// 1 2 3 4 5
+
+ar3.sort(function(i,j){return  -1*(i - j);}); 
+document.write("정렬이3(숫자내림)후=" + ar3 + br);// 100 5 3 2 1
+
+//수정
+let result2 = ar1.concat(['java', 'script']); //
+document.write("concat이후=" + result2 + br);
+
+
+//조회
+document.write(ar3.join("<br>") + br); //모든 데이터 조회 <br>분리자 메소드
+//for(a in ar1){ar1[a]}
+
+//포함여부
+let isJava = result2.includes('java');
+document.write(isJava  + br );
+
+
+//포함위치(0~ 배열.length-1)/ 없으면 -1
+let index = result2.indexOf('java');
+document.write(index  + br );
+
+let ar4 = ["java", "spring", "html", "java", "css", "ai", "java"];
+//ar4 배열에서 "java" 삭제
+
+let start = 0; //배열 0인덱스부터
+
+while(true){
+	let target = ar4.indexOf('java', start);
+	if(target == -1) break;
+	ar4.splice(target, 1);
+	start = target + 1;
+}
+
+//join("분리요소");
+//ar4 모든 요소 대문자변경
+//forEach(function(){출력문장 반복})
+//map(function(){원본배열 반복 내용 또다른 배열 생성 리턴})
+
+let items = ['itme1', 'item2', 'item3'];
+let copy_items = [];
+
+//for (결과동일)
+for(let i = 0; i < items.length; i++){
+	copy_items.push(items[i]);	
+}
+
+//메소드 (결과동일)
+//items.forEach(function(배열데이터, 인덱스, 배열){});
+items.forEach(function(item){copy_items.push(items[item]);});
+
+
+document.write("copy_items배열 = " + copy_items + br);
+
+items.forEach(function(item, index, items){
+	//items배열 각 요소를 대문자로 변경 결과를 다시 items 배열 저장
+	items[index] = item.toUpperCase();
+});
+
+document.write("대문자변경 items = " + items + br);
+
+let numbers = [1, 4, 9, 16, 25];
+let roots = numbers.map(Math.sqrt);
+document.write("sqrt실행이전 = " + numbers + br);
+document.write("sqrt실행이후 = " + numbers + br);
+document.write("sqrt실행이후 = " + roots + br);
+
+let strings = ['1', '4', '9', '16', '25'];
+let str_numbers = strings.map(Number);
+//let str_numbers = strings.map(function(s){ return parseInt(s,10);}); //.map(callback)
+//let str_numbers = strings.map(s =>  parseInt(s,10)); 
+document.write("string->int타입 변환 이후 " + str_numbers + br);
+//parseInt("100", 10); //10진수로 변환해라
+
+items = ['itme1', 'item2', 'item3'];
+let lis = items.map(function(i){
+	return "<li>" + i + "<li>";
+});
+
+document.write("<ul>");
+document.write(lis);
+document.write("</ul>");
+
+
+let two=[ [1,2,3], [4,5,6], [7,8,9] ];
+two.push([1, 1, 1]);
+
+
+let two_const = new Array(3);
+for(let i = 0; i < two_const.length; i++){
+	two_const[i] = new Array(3);
+	for(let j = 0; j < two_const[i].length; j++){
+		two_const[i][j] = i * j;
+	}
+}
+document.write(two_const + "<br>");
+
+//1. 객체지만 배열로 사용 가능
+//2. 프로퍼티변수 0이상 정수
+//3. length 프로퍼티 있음
+//유사 배열객체 - arguments, document.getElementsByClassName("클래스이름")
+//1개 태그 document.getElementById("ID값")
+let obj = {'0':1, '1':10, 'length':10};//네트워크상 컴퓨터, iot
+
+
+//비구조할당
+//let i = 1, j = 2;
+//let[i, j] = [1, 2]; //배열
+//document.write(i + ":" + j + br);
+//[i, j] = [j, i]; //i, j값 서로 맞바꿈
+//document.write(i + ":" + j + br);
+
+//나머지변수(rest)
+let[i, j, ...k] = [10, 20, 30, 40, 50]; 
+
+
+//함수 리턴값 비구조할당
+function test(i, j){
+	return [i+j, i-j, i*j, i/j];
+}
+
+let array = test(10, 2);
+//let [a,b,c,d] = test(10, 5);
+
+let {a:x, b:y} = {x:100, y:200};
+//console.log(a + ":" + b  + br);
+
+//spread 연산자 = 펼친다(배열, 문자열, 객체)
+//let str1 = "javascript";
+let result1 = [..."javascript"]; 
+document.write(result1 + br);
+
+function test2(x, y, z){
+	return x+y+z;
+}
+
+let result3 = test2([10, 20, 30]);
+//let result3 = test2(...[10, 20, 30]);
+document.write(result3 + br);
+
+</script>
+</body>
+</html>

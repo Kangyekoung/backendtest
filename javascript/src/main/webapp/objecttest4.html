@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+let br="<br>";
+
+document.write(br);
+
+let emp = {
+		id:100,
+		name:"이사원",
+		title : "사원",
+		dept : "교육부",
+		print : function(){}
+}
+
+//362p 프로퍼티 속성확인
+document.write(emp.id + br); //읽기
+emp.id = 200; //재정의
+emp.salary = 45600.99;//프로퍼티추가
+delete emp.salary;//프로퍼티삭제
+
+//프로퍼티추가불가 354 ~ 355p
+/*Object.preventExtensions(emp);
+emp.salary = 45600.99;//프로퍼티추가
+document.write(("salary" in emp) + br);//false //emp객체 안에 "salary"라는 프로퍼티가 있습니까?
+*/
+//프로퍼티삭제/추가불가
+/*
+Object.seal(emp);
+emp.salary = 45600.99;//프로퍼티추가 무시
+document.write(("salary" in emp) + br);
+delete emp.salary;//프로퍼티삭제 무시
+document.write(("id" in emp) + br); //true
+*/
+
+
+//프로퍼티삭제/추가/수정불가=readonly
+Object.freeze(emp);
+emp.name = "이대리"; //수정무시
+document.write(emp.name + br); //이사원
+emp.salary = 45600.99;//프로퍼티추가 무시
+delete emp.id;//프로퍼티삭제 무시
+document.write(("salary" in emp) + br); //false
+document.write(("id" in emp) + br); //true
+
+
+//프로퍼티 확인 열거
+//1개 프로퍼티
+document.write(("id" in emp) + br); //true
+document.write(emp.hasOwnProperty('id')+ br); //true
+
+//emp객체 모든 프로퍼티 열거
+//방법1
+for(p in emp){
+ document.write(p + ":" + emp[p] + " : ");
+}
+document.write("<br>");
+document.write("<hr>");
+//방법2
+document.write(Object.keys(emp) + br);
+document.write("<hr>");
+//방법3
+document.write(Object.getOwnPropertyNames(emp)+ br);
+</script>
+</body>
+</html>

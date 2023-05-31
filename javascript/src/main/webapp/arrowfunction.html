@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+
+function i(i, k){
+	let reuslt = i + k;
+	return reuslt;
+}
+
+document.write(i(10, 20) + "<br>");
+
+
+let arrow1 = 
+	(i, k)=>{
+	let reuslt = i + k;
+	return reuslt;
+};
+
+document.write(arrow1(10, 20) + "<br>");
+document.write(((j, k)=>{
+	let result = j+k;
+	return result;
+	})(10,20) + "<br>");	
+
+//let arrow2 = (i) => {return i+i};
+let arrow2 = i =>  i+i ;
+document.write(arrow2(10) + "<br>");
+
+let arrow3 = () => {return 10+10};
+document.write(arrow3() + "<br>");
+
+
+//기존 함수 차이점
+//1. arguments 키워드 - 함수 전달 배매개변수들 리스트 배열인데 화살표함수는 없다.
+// ... 매개변수 - 나머지매개변수
+function fi(){
+	
+	let result = 0;
+	document.write("<hr>");
+	//전달변수 모두 출력
+	for(a in arguments){ //i함수가 호출될데 arguments 정의
+		document.write(arguments[a] + "<br>");
+		result += arguments[a];
+	}
+	document.write("<hr>");
+	return reuslt;
+}
+document.write("i(10,20) = " + i(10, 20) + "<br>");
+document.write("i(10, 20, 4, 5, 6, 7) = " + i(10, 20, 4, 5, 6, 7) + "<br>");
+
+
+let arrow4 = (...c) => { //c는 배열, 매겨변수는 없어도되고 있어도되고 
+	//[...c] - 스프레이드연산자(리액트)
+	let result = 0;
+	document.write("<hr>");
+	//전달변수 모두 출력
+	for(a in c){ 
+		document.write(c[a] + "<br>");
+		result += c[a];
+	}
+	document.write("<hr>");
+	return result;
+}
+document.write("arrow4(10,20) = " + arrow4(10, 20) + "<br>");
+document.write("arrow4(10, 20, 4, 5, 6, 7) = " + arrow4(10, 20, 4, 5, 6, 7) + "<br>");
+
+/*
+함수(a, b, .....c)- ...변수명-rest매개변수(나머지매개변수)
+함수(1, 2)- c 없다
+함수(1, 2, 3) - c = 3
+함수(1, 2, 3, 4, 5) - c=[3, 4, 5]*/
+
+//2. this
+/*
+const emp = {
+	name:"홍길동",
+	tellName : function(){ //tellName은 객체안에 들어있는 함수
+		const inner = function(){ //중첩함수
+			document.write("====>" + this.name + "<br>");
+		}	
+		inner();//화살표함수가 아닌 함수는 호출 객체,  호출시점 this 결정 window
+	}
+};
+emp.tellName();
+*/
+
+
+//자바스크립트창시자 오류
+const emp = {
+		name:"홍길동",
+		tellName : function(){ 
+			//화살표함수는 정의시점, 정의객체 this 결정 tmp
+			const inner = ()=>{document.write("====>" + this.name + "<br>");}
+			inner();//호출시점 this 결정 window
+		}
+	};
+	
+emp.tellName();
+
+</script>
+</body>
+</html>

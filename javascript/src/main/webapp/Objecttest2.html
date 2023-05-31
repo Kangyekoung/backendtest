@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+let br = "<br>";
+
+//emp 100개 - id name salary print기능 동일
+let emp1 = {
+	//변수명:값 , , , , 
+	id:100,
+	name:"이사원",
+	salary : 56700.00,
+	title : "사원",
+	dept : "교육부",
+    print : function(){
+		document.write(this.id + ":" + this.name + ":" + this.salary + br);
+	}
+	
+};
+
+//생성자 함수 정의
+function Employee (id, name, salary){
+	/*프로퍼티변수선언*/
+	this.id = id;
+	this.name = name;
+	this.salary = salary;
+	this.print = function(){
+		document.write(this.id + ":" + this.name + ":" + this.salary + br);
+	}
+}
+
+ emp1 = new Employee(100,"이사원", 56700.00);
+ let emp2 = new Employee(200,"김대리", 78000.00); 
+ 
+ emp1.print();
+ emp2.print();
+ 
+ //emp1추가 메소드
+ emp1.add = function(bonus){
+	 document.write((this.salary + bonus) + br);
+ }
+emp1.add(10000);
+//emp2.add(10000); //x
+
+delete emp1.add;
+
+for(prop in emp1){
+	document.write(emp1[prop] + br);
+}
+document.write("<hr>" + br);
+
+for(prop in emp2){
+	document.write(emp2[prop]+ br);
+}
+ 
+ 
+</script>
+</body>
+</html>

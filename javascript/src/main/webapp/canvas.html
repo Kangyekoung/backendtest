@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+onload = function(){
+	let convas = document.getElementById("mycanvas");
+	//캔버스 영역 렌더링 컨텍스트 - 붓, 연필, 색연필
+	let ctx = convas.getContext("2d");
+	
+	//사각형
+	//ctx.strokeRect(50, 50, 200,100); //위치(x,y) 크기(가로, 세로)
+	//ctx.fillRect(50, 50, 200,100);
+	//ctx.clearRect(50, 50, 200,100);
+
+	//삼각형 - 라인연결
+	/*ctx.beginPath();
+	ctx.moveTo(50, 50);
+	ctx.lineTo(150, 150);
+	ctx.lineTo(50, 150);
+	ctx.closePath();
+	ctx.stroke();*/
+	
+	//원 pi * 반지름 * 2
+	/*ctx.beginPath();
+	ctx.arc(100, 100, 50, Math.PI/2, Math.PI,false); //증심 x, y, 반지름크기,원시작위치(3시) 크기. t/f(시계, 반시계)
+	ctx.closePath();
+	ctx.fill();*/
+	
+	
+	//이미지 
+	/*
+	let myimage = new Image();
+	myimage.src = "/html/images/drinks.jpg";
+	myimage.onload = function(){
+		ctx.drawImage(myimage, 0, 0, myimage.width, myimage.height);
+	}
+	*/
+	
+    //텍스트 색상 굴기 스타일 설정
+	/*ctx.strokeStyle="red";
+	ctx.fillStyle="blue";
+	ctx.lineWidth=10;
+	ctx.font = "40px serif";
+	ctx.strokeText("Hello Canvas", convas.width/2 - 20, 180);//(x,y)
+	ctx.fillText("Hello Canvas", convas.width/2 - 20, 220);
+	*/
+	
+	//이미지2 
+	
+	let myimage = new Image();
+	myimage.src = "/html/images/html5.jpg";
+	myimage.onload = function(){
+		ctx.drawImage(myimage, 0, 0);//좌표지정, 원본크기로
+		/*cut-paste*/
+		let cutimage = ctx.getImageData(0, 50, myimage.width, 50);//ctx.getImageData(이미지보여주는영역설정)
+	
+		//색상 반전
+		// image 1 point (rgba)[10, 20, 30, 40, 2, 3, ]
+		for(let i = 0; i < cutimage.data.length; i++){
+			if(i % 4 != 3){
+				cutimage.data[i] = 255 - cutimage.data[i];
+			}
+		}
+		ctx.putImageData(cutimage, 200, 100);
+		ctx.clearRect(0,50, myimage.width, 50)
+	}
+	
+}//onload end
+
+</script>
+<canvas id="mycanvas" width=640 height=400 style="border: soild 2px blue"></canvas>
+</body>
+</html>

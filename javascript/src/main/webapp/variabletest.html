@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+/*자바스크립트 모든변수값 미정일 때 출력 - undefined*/
+
+/*
+ * 1. 변수 호이스팅
+ var i;
+*/
+
+document.write("<h3>i(var)=" + i + "</h3>"); //ok, undefined 변수 호이스팅을 통해서 변수 선언은 됬지만, 초기값이 지정되지 않음
+//document.write("<h3>j=" + j+ "</h3>"); //error
+
+var i = 100; //1. 스크립트 시작 자동 첫문자 이동 - 변수 hoisting
+j = 200; //var키워드 없으면 변수 hoisting x
+document.write("<hr>");
+
+
+
+//const키워드 : 상수, 값 변경 불가
+const k = 300; //es6 새롭게 추가. 변수 hoisting x
+/*k = 400;*/
+document.write("<h3>k(const)=" + k+ "</h3>");
+let g = 400; //es6 새롭게 추가. 변수 hoisting x
+g = 500; //number
+document.write("<h3>g(let)=" + g+ "</h3>");
+document.write("<h3>g의변수타입=" +typeof(g)+ "</h3>");
+g = "javascript"; //string
+document.write("<h3>g의변수타입=" +typeof(g)+ "</h3>");
+g = true; //boolean
+document.write("<h3>g의변수타입=" +typeof(g)+ "</h3>");
+
+</script>
+</body>
+</html>

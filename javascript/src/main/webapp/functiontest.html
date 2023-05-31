@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+//함수 - 기능 구현 문장 집합
+// 함수 정의(리턴값 이름 매개변수) , 호출 실행
+let br = "<br>";
+
+//함수 정의
+//매개변수 없고 리턴값 없는 함수
+function f1(){
+	document.write(" f1 함수 실행" + br);
+}
+
+//매개변수 없고 리턴값 있는 함수
+function f2() {
+	document.write("f2 함수 실행" + br);
+	return 10*10;
+}
+
+//매개변수, 리턴값 있는 함수
+function f3(i) {
+	document.write("f3 함수 실행" + br);
+	if(typeof(i) == 'number') return i*i;
+	else return 0; //return 뒤에 enter치지 말것.
+	
+}
+
+f4(); //f4함수 선언되기 전 호출 //함수 호이스팅되기때문에 실행가능
+
+function f4(){ //함수 호이스팅,
+	document.write("f4 함수 실행" + br);
+}
+
+//매개변수 5개 있고 리턴값 없는 함수
+function f5(i, j, k, g, h){
+	document.write("f5 함수 실행" + br);
+	document.write(i + j + k + g + h + br);
+}
+
+//매개변수 1개 있고 타입 객체일 때 리턴값 없는 함수
+function f6(obj){
+	document.write("f6 함수 실행" + br);
+	if(typeof(obj) == "object" && 'id' in obj) //obj의 프로퍼티확인
+	document.write(obj.id + obj.name + obj.salary + obj.title + obj.dept + br);
+}
+
+//매개변수 없고 리턴값 없는 함수
+//window 내장객체, 이미 존재하는 객체
+var global = "글로벌"; //전역변수
+function f7(){
+	
+	var global = "로컬"; //지역변수
+	document.write(this.global + br); // this = window 내장객체
+}
+
+//함수 호출
+f1();
+let result1 = f2();
+document.write("f2 함수 리턴값=" + result1 + br);
+let result2 = f3(5);
+document.write("f3 함수 리턴값=" + result2 + br);
+
+document.write("f3 함수 리턴값=" + f3("java") + br); //undefined, / NaN(Not a Number) -> 숫자로 가려지지 않는다.
+document.write("f3 함수 리턴값=" + f3(true) + br);
+document.write("f3 함수 리턴값=" + f3(3,1) + br);
+document.write("f3 함수 리턴값=" + f3() + br); //undefined
+
+document.write("f3 함수 리턴값=" + f3 + br);// 함수를 변수처럼 쓸때()제거 //함수도 변수처럼 취급하기 때문 f3함수의 내용 출력
+f5(1, 2, 3, 4, 5); //산술연산
+f5("JAVA", "SCRIPT", 3, 4, 5); //문자열 섞여 있으면 문자열 결합
+
+let emp1 = {
+		//변수명:값 , , , , 
+		id:100,
+		name:"이사원",
+		salary : 56700.00,
+		title : "사원",
+		dept : "교육부"
+		
+	};
+f6(emp1);
+f7();
+
+
+//함수 선언식(함수이름포함)
+
+//함수 표현식=함수 리터럴(1. 무명의함수정의즉각호출실행)
+(function (){
+	document.write(" 무명의 함수 실행" + br);
+})();
+
+//함수 표현식=함수 리터럴(2. 자바스크립트 함수도 변수처럼 취급) - hoisting x 함수 선언다음에 호출해야한다.
+let f = function(){
+	document.write(" 무명의 함수 실행(변수로 취급)" + br);
+};
+
+f();
+f = function(){
+	document.write("또다른 함수 실행" + br);
+};
+
+</script>
+
+</body>
+</html>

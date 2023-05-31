@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+let br="<br>";
+
+/* 생성자 없이 리터럴로 만들 수 있는 경우
+//객체만들기
+let a = new Object();
+a = {};
+
+//배열 만들기
+let b = new Array(10);
+b = [];
+
+//문자열
+let c = "java";
+c = new String();
+
+let d = 12.345;
+d = new Number(12.345);
+*/
+
+//Map만들기 - 생성자로만
+let weather = new Map();
+weather.set("오늘","sunny");
+weather.set("내일","rainy");
+weather.set("어제", "sunny");
+weather.set("어제", "cloudy");
+document.write(weather.size + br);
+document.write(weather.get("어제")+ br);
+
+//모든데이터조회
+//entries, foreach, for-of
+///////////////////////////////////
+//for (p in ar)- ar[p]
+//for (p of ar)-- p
+for(let [key, value] of weather){ //비구조화
+	document.write(key + "=" + value + br);
+}
+
+document.write("<hr>");
+
+//Map의 forEach
+weather.forEach(function(value, key){
+	document.write(key + "=" + value + br);
+});
+document.write("<hr>");
+
+//배열을          map 변환
+// [0] = 10    ('0',  10)
+//객체           map 변환
+// id:100      ('id', 100)
+
+
+//배열, 객체만 저장되있음
+let array = [
+{eng:"one", kor:"하나"},
+{eng:"two", kor:"둘"},
+{eng:"three", kor:"셋"}
+]
+
+//배열 -> Map으로 변경 / index -> key로 변경
+let array_map = new Map(Object.entries(array));//배열복사해서 Map객체 생성
+document.write(array_map.get('0').eng + " : " +array_map.get('0')['kor'] + br);
+
+let map1 = new Map([ ["one", "하나"], ["two", "둘"], ["three", "셋"] ]);
+let map2 = new Map([ ["one", "일"], ["five", "다섯"] ]);
+
+//Map2개 객체 합치기
+let totalmap = new Map([...map1, ...map2]);
+document.write(totalmap.size + br);
+document.write(totalmap.get("one") + br); //중복된 key값일 경우 
+
+
+//Set
+let set1 = new Set();
+set1.add("java").add(100).add(3.14).add([1,2,3]).add("java");
+document.write(set1.size + br); //t
+document.write(set1.has(100) + br); // true
+//배열 / 객체 delete a[0]
+//Set,Map / set.delete(??)
+
+//배열
+let ar4 = ["java", "spring", "html", "java", "css", "ai", "java"];
+//배열->Map
+ new Map(Object.entries(array));
+ 
+ //배열을 Set 변환 (배열 중복 요소 제거)
+ let array_set = function(ar){return [...new Set(ar)];}
+ let result = array_set(ar4);
+ document.write(result + br);
+</script>
+</body>
+</html>

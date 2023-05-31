@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1 id="header"> window.screen 정보</h1>
+<script>
+document.write("<h3>화면 사용가능한 너비=" + screen.availWidth+ "</h3>" );
+document.write("<h3>화면 사용가능한 높이=" + screen.availHeight+ "</h3>" ); //screen.height 작업표시줄 공간 뺀 크기
+
+//document.write("<h3>화면 사용가능한 너비=" + screen.width+ "</h3>" );
+//document.write("<h3>화면 사용가능한 높이=" + screen.height+ "</h3>" );
+
+document.write("<h3>화면 사용가능한 높이=" + screen.orientation+ "</h3>" );
+</script>
+<h1 id="header"> 브라우저 정보</h1>
+<script>
+document.write("<h3>" + navigator.appCodeName + "</h3>");
+document.write("<h3>" + navigator.userAgent + "</h3>");
+document.write("<h3>" + navigator.platform + "</h3>");
+if(navigator.userAgent.indexOf("Trident") >= 0){
+	document.write("<h3> ie를 사용하시는군요(브라우저를 다른 종류로 변경 권고합니다)!! </h3>");
+}
+else if(navigator.userAgent.indexOf("Edg") >= 0){
+	document.write("<h3> 엣지를 사용하시는군요!! </h3>");
+}
+else if(navigator.userAgent.indexOf("Chrome") >= 0){
+	document.write("<h3> 크롬을 사용하시는군요!! </h3>");
+}
+// 크롬 - Chrome
+// 엣지 - Chrome, Edge
+// ie 11 - Trident
+
+
+</script>
+<h1 id="header"> history 정보</h1>
+<a href="javascript:history.back()"> 이전으로 되돌아가기(뒤로버튼)</a><br>
+<a href="javascript:history.forward()"> 앞으로 가기(앞버튼)</a><br>
+<a href="javascript:history.go(-1)">이전으로 되돌아가기(뒤로버튼)</a><br>
+<a href="javascript:history.go(1)"> 앞으로 가기(앞버튼)</a><br>
+
+<script>
+//alert(history.length);
+</script>
+
+<!-- id속성=header 1개만 존재.(여러개태그 무시) -->
+<h1 id="header"> location(url) 정보 </h1>
+<form action="a.jsp">
+<input type=text id="name">
+<input type=button value="전송" id="sendbtn">
+</form>
+
+<script>
+document.write("<h3>" + location.href + "</h3>"); //현재문서
+document.getElementById("sendbtn").onclick = function(){
+	//a.jsp 이동(화면 a.jsp 보이게)
+	//location.href = "a.jsp"; //a.jsp 이동 후 뒤로 버튼 클릭하면 현재파일(이전 href 값 저장 - history)
+	//location.assign("a.jsp"); //a.jsp 이동 후 뒤로 버튼 클릭하면 현재파일(이전 href 값 저장 - history)
+	location.replace("a.jsp"); //a.jsp 이동 후 뒤로 버튼 클릭하면 현재파일이전화면(이전 href 값 삭제)
+	
+	//현재 문서의 header 인 곳으로 이동
+	//location.hash = "#header";
+}
+</script>
+</body>
+</html>

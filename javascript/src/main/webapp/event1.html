@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<script>
+
+function display1(){
+	alert("클릭했어요"); 
+}
+//display1();// 1. 호출하면 실행
+
+
+window.onload = function(){ //화면 html태그 모두 완성 후에 실행 문장 구현
+	/*document.getElementById("second").onclick = function(){
+	alert("클릭2 버튼 클릭했어요");
+	};*/
+	
+	let second = document.getElementById("second"); //HTML 태그 = 자바스크립트 객체형태변환. DOCUMENT OBJECT DOM
+	second.onclick = function(){alert(second.tagName + " : " + second.type);}
+	/* second = {
+		tagName:input
+		id:second
+		type: button
+		value: 클릭2
+		name : null
+		onclick : function(){alert("클릭2 버튼 클릭했어요");}
+	}
+	*/
+	let stop = document.getElementById("stop");
+	stop.onclick = function(){ //stop버튼 누르면 second버튼 이벤트 제거
+		second.onclick = null;
+	}
+}
+
+</script>
+
+<input id="first" type=button value="클릭1" onclick="display1()">
+<input id="second" type=button value="클릭2">
+<input id="stop" type=button value="클릭2 클릭이벤트 제거">
+<!--2. 클릭1 클릭할 때마다-->
+
+<!--  모든 html태그  - 이벤트 발생html
+사용자 마우스클릭, 마우스오버 - 이벤트발생
+이벤트 발생시 처리 내용 자바스크립트 함수로 구현 = 이벤트핸들러함수 
+
+html태그 - 이벤트 종류 - 이벤트처리함수 -- 등록
+document.getElementById("second")
+html문서 id=second 태그 정보 조회.
+
+html
+-->
+
+</body>
+</html>

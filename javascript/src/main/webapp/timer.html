@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+let br="<br>";
+
+document.write(br);
+
+</script>
+
+<script>
+//타이머해제
+let id = setInterval( f1, 5000);
+/*
+ * 
+ function setInterval(a,b){
+	if(typeof(a) == "function" && b 시간만큼 흐르면){
+		a();
+	}
+}
+ */
+
+//10초후 종료
+setTimeout(function(){clearInterval(id)}, 10000);  //clearInterval(setInerval변수)
+
+function f1(){
+	let now = new Date();
+	document.getElementById("clock").innerHTML =  `<h1>${now.toLocaleTimeString()}</h1>`; //태그인식
+}
+</script>
+
+
+<!-- body 부분을 자바스크립트 : innerHTML / innerText -->
+<div id="clock">여기에 시계가 출력됩니다.</div>
+
+
+
+
+</body>
+</html>

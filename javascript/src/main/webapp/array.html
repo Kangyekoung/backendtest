@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+let br="<br>";
+let obj = {};//블록 //객체
+/*obj.i = 10;
+obj.add = function(){}*/
+
+//모든타입 다들어갈 수 있다.
+let arr =[];//인덱스 //배열 //자바 고정길이 배열, ArrayList 가변길이 유사배열
+document.write("= " + arr.length + br);
+
+//typeof :number(정수, 실수), boolean, string, null, undefined, function, object
+document.write("typeof(obj)= " + typeof(obj) + br);
+document.write("typeof(arr= " + typeof(arr) + br);
+document.write("obj생성자= " + obj.constructor + br);
+document.write("arr생성자= " + arr.constructor + br); //arr생성자 내부에 constructor 변수를 출렬해보자
+document.write("obj생성자= " + Object.prototype.toString.call(obj) + br);//Object 생성자 함수안에 tostring 메소드를 호출하는데 obj를 전달해라
+document.write("arr생성자= " + Object.prototype.toString.call(arr) + br);
+
+arr[0] = 10; //자바스크립트의 배열은 ArrayList 가변길이와 동일
+document.write("배열길이= " + arr.length + br); //1
+arr[10] = 100; //추가
+document.write("배열길이= " + arr.length + br); //11
+
+/*
+for(let i = 0; i < arr.length; i++){//값이 있든 없든 다 반복
+	document.write(i + "번째 인덱스의 값= " + arr[i] + br);//undefined 자리는 있지만 값이 없다.
+}*/
+
+for(i in arr){ //값이 있는 것만 출력
+	document.write(i + "번째 인덱스의 값= " + arr[i] + br);
+}
+
+document.write("<hr>");
+
+//값이 있는 배열
+let arr2 = [1, 3.14, 'abc', false, function(){}, [10, 20,30], {id:100, name:'홍길동'}]; //배열 값은 7개
+document.write("배열길이= " + arr2.length + br);
+
+arr2[0] = 100; //수정
+for(i in arr2){ //값이 있는 것만 출력
+	document.write(i + "번째 인덱스의 값= " + arr2[i] + br);
+}
+
+
+//배열 생성자함수
+let arr3 = new Array(10); //new Array(10) : 배열의 크기를 10으로 생성
+document.write("arr3.length=" + arr3.length + br); //10
+//arr3[0] = 50;
+
+//배열요소의 첫번째 요소로 추가(수정x)원래 첫번째요소 -->두번째...
+arr3.unshift(50); 
+
+//배열 마지막요소로 추가 9번인덱스까지 존재 상태. 
+arr3.push(10);
+arr3.push(20);
+arr3.push(30);
+
+//배열 첫번째 요소 삭제
+arr3.shift();
+//배열 마지막 요소 삭제
+arr3.pop();
+
+//delete arr3[index];
+
+document.write("arr3.length=" + arr3.length + br); //10
+
+for(i in arr3){ 
+	document.write(i + "번째 인덱스의 값= " + arr3[i] + br);
+}
+document.write(arr.join(":") + br); //10::::::::::100
+document.write(arr + br); //10,,,,,,,,,,100
+
+//undefind 출력 x
+arr.forEach(function(data, index){ //배열의 크기 반복, 할때마다 인덱스, 값 매개변수 넘거 결과값 출력
+	document.write(index + "번째 데이터=" + data + br);
+});
+
+
+//) > 단항 > 이항 > 삼항 > 대입(=)
+</script>
+</body>
+</html>
+
+<!-- typeof in delete 연산자 -->
